@@ -18,6 +18,7 @@ class App {
     this.player.inputUserNumber((numbers) => {
       Validate.validateInputNumbers(numbers);
       const resultArray = this.referee.compare(this.#computerNumbers, numbers);
+      OutputView.printHint(resultArray);
     })
   }
 }
