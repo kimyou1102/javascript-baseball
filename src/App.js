@@ -12,15 +12,36 @@ class App {
     this.player = new Player();
     this.referee = new Referee();
     this.#computerNumbers = this.computer.selectNumber();
+    this.hint;
   }
 
   play() {
+    this.inputUserNumber();
+  }
+
+  inputUserNumber() {
     this.player.inputUserNumber((numbers) => {
       Validate.validateInputNumbers(numbers);
       const resultArray = this.referee.compare(this.#computerNumbers, numbers);
-      OutputView.printHint(resultArray);
+      this.hint = OutputView.printHint(resultArray);
+      this.judgeRepeat();
+      console.log(this.#computerNumbers);
     })
   }
+
+  judgeRepeat() {
+    if(this.hint === '3스트라이크') {
+      OutputView.printSuccess();
+      this.selectEnd();
+      return;
+    }
+    this.inputUserNumber();
+    return;
+  }
+
+  selectEnd() {
+  }
+
 }
 
 const app = new App();
