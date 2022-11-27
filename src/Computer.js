@@ -1,10 +1,16 @@
 const { Random } = require("@woowacourse/mission-utils");
 
 class Computer {
+  static #RANGE = {
+    min: 1,
+    max: 9,
+    digits: 3
+  }
+
   selectNumber() {
     const computer = [];
-    while (computer.length < 3) {
-      const number = Random.pickNumberInRange(1, 9);
+    while (computer.length < Computer.#RANGE.digits) {
+      const number = Random.pickNumberInRange(Computer.#RANGE.min, Computer.#RANGE.max);
       if (!computer.includes(number)) {
         computer.push(number);
       }

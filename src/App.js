@@ -7,6 +7,12 @@ const { Console } = require("@woowacourse/mission-utils");
 
 class App {
   #computerNumbers;
+
+  static #END = {
+    condition: '3스트라이크',
+    number: 2,
+  }
+
   constructor() {
     OutputView.printStart();
     this.computer = new Computer();
@@ -29,7 +35,7 @@ class App {
   }
 
   judgeRepeat() {
-    if(this.hint === '3스트라이크') {
+    if(this.hint === App.#END.condition) {
       OutputView.printSuccess();
       this.selectEnd();
       return;
@@ -40,7 +46,7 @@ class App {
 
   selectEnd() {
     InputView.inputEndOrRetry((number) => {
-      if(Number(number) === 2) {
+      if(Number(number) === App.#END.number) {
         Console.close();
         return;
       }
