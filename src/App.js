@@ -1,9 +1,10 @@
 const Computer = require('./Computer');
+const OutputView = require('./OutputView')
+
 class App {
-  #computerNumbers;
   constructor() {
+    OutputView.printStart();
     this.computer = new Computer();
-    this.#computerNumbers = this.computer.selectNumber();
   }
 
   play() {
