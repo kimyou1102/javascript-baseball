@@ -28,10 +28,14 @@ class App {
   inputUserNumber() {
     InputView.inputUserNumber((numbers) => {
       Validate.validateInputNumbers(numbers);
-      const resultArray = this.referee.compare(this.#computerNumbers, numbers);
-      this.hint = OutputView.printHint(resultArray);
-      this.judgeRepeat();
+      this.compareValue(numbers);
     })
+  }
+
+  compareValue(numbers) {
+    const resultArray = this.referee.compare(this.#computerNumbers, numbers);
+    this.hint = OutputView.printHint(resultArray);
+    this.judgeRepeat();
   }
 
   judgeRepeat() {
