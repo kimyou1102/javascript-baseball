@@ -17,19 +17,19 @@ const OutputView = {
     Console.print(this.MESSAGE.startGame);
   },
 
-  printHint(hintObj) {
-    const result = [];
-    const { ball, strike } = hintObj;
-    if (ball + strike === 0) {
+  printHint(result) {
+    let hint = '';
+    const { ball, strike, nothing } = result;
+
+    if(nothing) {
       Console.print(this.UNIT.allWrong);
-      return this.UNIT.allWrong;
+      return;
     }
 
-    if (ball > 0) result.push(`${ball}${this.UNIT.ball}`);
-    if (strike > 0) result.push(`${strike}${this.UNIT.strike}`);
+    if(ball > 0) hint += `${ball}${this.UNIT.ball} `;
+    if(strike > 0) hint += `${strike}${this.UNIT.strike}`;
 
-    Console.print(result.join(" "));
-    return result.join(" ");
+    Console.print(hint.trim());
   },
 
   printSuccess() {

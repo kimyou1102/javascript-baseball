@@ -9,7 +9,7 @@ class App {
   #computerNumbers;
 
   static #END = {
-    condition: '3스트라이크',
+    condition: 3,
     number: 2,
   }
 
@@ -17,7 +17,6 @@ class App {
     OutputView.printStart();
     this.computer = new Computer();
     this.referee = new Referee();
-    this.hint;
   }
 
   play() {
@@ -34,12 +33,12 @@ class App {
 
   compareValue(numbers) {
     const resultArray = this.referee.compare(this.#computerNumbers, numbers);
-    this.hint = OutputView.printHint(resultArray);
-    this.judgeRepeat();
+    OutputView.printHint(resultArray);
+    this.judgeRepeat(resultArray.strike);
   }
 
-  judgeRepeat() {
-    if(this.hint === App.#END.condition) {
+  judgeRepeat(strike) {
+    if(strike === App.#END.condition) {
       OutputView.printSuccess();
       this.selectEnd();
       return;
